@@ -31,6 +31,9 @@ module M2ySitef
         "authorizer_id":"440",
         "amount": (amount * 100).to_i
       }
+      if psp.present?
+        body[:additional_data] = {:pix_psp => psp}
+      end
 
       url = "#{baseUrl}/#{TRANSACTIONS_PATH}"
       headers = basicHeaders
