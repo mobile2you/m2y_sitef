@@ -2,6 +2,7 @@ require 'm2y_sitef/configuration/configuration'
 require 'm2y_sitef/constants/constants'
 require 'm2y_sitef/modules/base'
 require 'm2y_sitef/modules/transactions'
+require 'm2y_sitef/modules/merchants'
 
 module M2ySitef
 

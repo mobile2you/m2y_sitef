@@ -3,9 +3,18 @@ module M2ySitef
 
   class Transactions < Base
 
-    def self.checkPix(nit)
+    def self.checkPix(nit, merchant_id = nil, merchant_key = nil)
       url = "#{baseUrl}/#{TRANSACTIONS_PATH}/#{nit}"
-      req = HTTParty.get(url, headers: basicHeaders)
+      
+      headers = basicHeaders
+      if merchant_id.present?
+        headers["merchant_id"] = merchant_id
+      end
+      if merchant_id.present?
+        headers["merchant_key"] = merchant_key
+      end
+
+      req = HTTParty.get(url, headers: headers)
       if req.code > 300
         return nil
       end
@@ -14,7 +23,7 @@ module M2ySitef
       payment
     end
 
-    def self.doPix(amount, order_id, psp = nil)
+    def self.doPix(amount, order_id, psp = nil, merchant_id = nil, merchant_key = nil)
       body = {
         "order_id": order_id,
         "installments":"1",
@@ -24,7 +33,14 @@ module M2ySitef
       }
 
       url = "#{baseUrl}/#{TRANSACTIONS_PATH}"
-      req = HTTParty.post(url, headers: basicHeaders, body: body.to_json)
+      headers = basicHeaders
+      if merchant_id.present?
+        headers["merchant_id"] = merchant_id
+      end
+      if merchant_id.present?
+        headers["merchant_key"] = merchant_key
+      end
+      req = HTTParty.post(url, headers: headers, body: body.to_json)
       p req.parsed_response
       if req.code > 300
         return nil
