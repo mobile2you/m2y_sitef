@@ -3,4 +3,5 @@ module M2ySitef
   TRANSACTIONS_PATH = "#{BASE_PATH}/transactions"
   MERCHANTS_PATH = "#{BASE_PATH}/merchants"
   PAYMENTS_PATH = "#{BASE_PATH}/payments"
+  CANCELATIONS_PATH = "#{BASE_PATH}/cancellations"
 end

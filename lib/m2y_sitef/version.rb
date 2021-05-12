@@ -1,3 +1,3 @@
 module M2ySitef
-  VERSION = "0.0.8"
+  VERSION = "0.0.9"
 end
